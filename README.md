@@ -2,12 +2,46 @@
 Exercise
 
 Created a controller implementing methods for create, update, delete and read bookings from in-memory volatile database (apache-ignite v2.15.0)
-The database is running on localhost:10800
-The server is configurated to work on localhost:9000
+A booking is when a guest selects a start and end date and submits a reservation on a property.
+A block is when the property owner or manager selects a range of days during which no guest can make a booking (e.g. the owner wants to use the
+property for themselves, or the property manager needs to schedule the repainting of a few rooms).
+Blocks can overlap with each other.
+Blocks can't overlap a booking.
 
 
+
+The database is running on 127.0.0.1:10800
+The server is configurated to work on 127.0.0.1:9000
+Tested on Centos 7
+Developed with Netbeans16
 
 sql file to create a database is booking_ext.sql
+
+
+To run the application:
+
+download apache-ignite binaries and extract to eg:/usr/local
+download maven and extract to eg: /usr/local
+follow provider instructions to install both
+
+open a terminal
+Go to $IGNITE_HOME/bin
+execute ./ignite.sh
+
+open a new terminal
+Go to $IGNITE_HOME/bin
+execute ./ignite.sh
+
+open a new terminal
+Go to $IGNITE_HOME/bin
+execute ./sqlline.sh -u jdbc:ignite:thin://127.0.0.1/
+write a username eg: admin
+write a password eg: admin
+execute !run path_to_booking_ext.sql
+execute !q
+
+Go to the project directory
+execute mvn spring-boot:run
 
 
 
